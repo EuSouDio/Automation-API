@@ -8,7 +8,7 @@ O projeto baseia-se na API referente a pagina https://automationexercise.com/api
 - Clique no script `CT01.cy.js`
 
 ### Estrutura do projeto
-
+```
 Automation-API/
 ├── cypress/
 │   ├── e2e/              # testes de ponta a ponta (E2E)
@@ -21,5 +21,5 @@ Automation-API/
 ├── package.json
 ├── README.md
 └── cypress.config.js     # arquivo de configuração do Cypress
-
+```
 
