@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     triggers {
-        pollSCM('* * * * *') // checa a cada 1 min (alternativa ao GitHub webhook)
+        pollSCM('H/5 * * * *') // verifica a cada 5 min
+
     }
 
     stages {
