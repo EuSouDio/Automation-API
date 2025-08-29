@@ -2,15 +2,15 @@ pipeline {
     agent any
 
     triggers {
-        pollSCM('H/5 * * * *') // verifica a cada 5 min
-
+        // Backup para rodar a cada 5 minutos caso webhook falhe
+        pollSCM('H/5 * * * *')
     }
 
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/EuSouDio/Automation-API.git'
+                    url: 'https://github.com/SEU_USUARIO/SEU_REPO.git'
             }
         }
 
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     docker.image("cypress-tests").inside {
-                        sh 'npx cypress run'
+                        sh 'npm test'
                     }
                 }
             }
@@ -35,7 +35,8 @@ pipeline {
 
     post {
         always {
-            junit '**/cypress/results/*.xml' // se você exportar resultados junit
+            archiveArtifacts artifacts: 'cypress/videos/**/*.*, cypress/screenshots/**/*.*', allowEmptyArchive: true
+            junit 'cypress/results/*.xml'
         }
     }
 }
