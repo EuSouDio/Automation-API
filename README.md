@@ -1,43 +1,25 @@
 # Automation-API
-O projeto bseia-se na API referente a pagina https://automationexercise.com/api_list
+O projeto baseia-se na API referente a pagina https://automationexercise.com/api_list
 
-Se seu projeto será do Zero:
+### Para rodar os testes aqui propostos voce precisa:
+- Baixar o repositório `git clone https://github.com/EuSouDio/Automation-API.git`
+- Instalar as dependências (npm install);
+- Execute o comando `npx cypress open`
+- Clique no script `CT01.cy.js`
 
-1 - Crie o arquivo de configurções "pckage.json" com o comando:
+### Estrutura do projeto
 ```
-bash
-npm init -y
-```
-
-2 - Instale o Cypress com o comando:
-```
-bash
-npm install cypress --save-dev
-```
-3 - Crie a estrutura de pastas no Cypress, executando o comando e seguindo com as configurações básicas:
-```
-bash
-npx cypress open
-```
-Segue escrutura
-```
-/cypress
-  └── /e2e     ← onde você colocará seus testes
+Automation-API/
+├── cypress/
+│   ├── e2e/              # testes de ponta a ponta (E2E)
+│   │   ├── CT01.cy.js
+├── support/              # comandos customizados e configs globais
+│   ├── support/          
+│   │   └── e2e.js
+│   └── fixtures/         # arquivos de dados mockados
+├── node_modules/
+├── package.json
+├── README.md
+└── cypress.config.js     # arquivo de configuração do Cypress
 ```
 
-4 - Execução dos testes:
-Há duas formas, via interface e via prompt de comando;
-a - Via interface;
-- execute o comando:
-```
-bash
-npx cypress open
-``` 
-e escolha o script de testes;
-
-b - Via cmd.
-- execute o comando na pasta do script:
-```
-bash
-npx cypress run --e2e
-```

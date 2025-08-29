@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    triggers {
+        pollSCM('* * * * *') // checa a cada 1 min (alternativa ao GitHub webhook)
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/EuSouDio/Automation-API.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    docker.build("cypress-tests")
+                }
+            }
+        }
+
+        stage('Run Cypress Tests') {
+            steps {
+                script {
+                    docker.image("cypress-tests").inside {
+                        sh 'npx cypress run'
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            junit '**/cypress/results/*.xml' // se você exportar resultados junit
+        }
+    }
+}
